@@ -1,18 +1,14 @@
-var apiKey = "a8413cba25605a4ae619a572d1557fb5";
+var apiKey = "371201dc0173d4e3e8307cc1abf9c509";
 var searchBtn = document.querySelector("#search-button");
 var todayEl = document.getElementById("today");
 var historyEl = document.getElementById("history");
-// cities = [];
 
 
 function searchValue() {
     var searchValue = document.querySelector("#search-value").value;
     console.log(searchValue);
     getWeather(searchValue);
-    fiveDayForecast(searchValue);
-    // cities.push(searchValue);
-    // localStorage.setItem("cities", cities);
-    
+    fiveDayForecast(searchValue);    
 }
 
 
@@ -73,7 +69,7 @@ function getWeather(searchValue) {
             historyEl.append(historyBtn);
 
             
-            historyBtn.addEventListener("click", getWeather(cityName));
+            // historyBtn.addEventListener("click", getWeather(cityName));
 
         })
 
