@@ -60,23 +60,19 @@ function getWeather(searchValue) {
 
             var latitude = data.coord.lat;
             console.log(latitude);
-
-            function uvIndex(searchValue) {
-                var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
-                fetch(uvURL)
-                    .then(function (response) {
-                        return response.json()
-                    }).then(function (data) {
-                        console.log(data);
-                    })
-            }
-
-
         })
 
+        function uvIndex(latitude, longitude) {
+            var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+            fetch(uvURL)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (data) {
+                    console.log(data);
+                })
+        }
 
-
-
+        uvIndex(latitude, longitude);
 }
 
 
