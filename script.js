@@ -2,13 +2,32 @@ var apiKey = "371201dc0173d4e3e8307cc1abf9c509";
 var searchBtn = document.querySelector("#search-button");
 var todayEl = document.getElementById("today");
 var historyEl = document.getElementById("history");
+var city = JSON.parse(localStorage.getItem("city")) || [];
 
 
 function searchValue() {
     var searchValue = document.querySelector("#search-value").value;
     console.log(searchValue);
+
+    if (!city.includes(searchValue)) {
+    city.unshift(searchValue);
+    localStorage.setItem("city", JSON.stringify(city));
     getWeather(searchValue);
-    fiveDayForecast(searchValue);    
+    fiveDayForecast(searchValue);
+    saveSearch()
+    }
+
+}
+
+function saveSearch() {
+    historyEl.innerHTML = "";
+    console.log(city)
+    for (var i = 0; i < city.length; i++) {
+        var previous = document.createElement("button");
+        previous.textContent = cities[i];
+        historyEl.appendChild(previous)
+        
+    }
 }
 
 
@@ -64,13 +83,9 @@ function getWeather(searchValue) {
 
             uvIndex(latitude, longitude);
 
-            var historyBtn = document.createElement("button")
-            $(historyBtn).text(cityName)
-            historyEl.append(historyBtn);
+            
 
             
-            // historyBtn.addEventListener("click", getWeather(cityName));
-
         })
 
 
