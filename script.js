@@ -1,6 +1,8 @@
 var apiKey = "a8413cba25605a4ae619a572d1557fb5";
 var searchBtn = document.querySelector("#search-button");
 var todayEl = document.getElementById("today");
+var historyEl = document.getElementById("history");
+// cities = [];
 
 
 function searchValue() {
@@ -8,6 +10,9 @@ function searchValue() {
     console.log(searchValue);
     getWeather(searchValue);
     fiveDayForecast(searchValue);
+    // cities.push(searchValue);
+    // localStorage.setItem("cities", cities);
+    
 }
 
 
@@ -60,19 +65,40 @@ function getWeather(searchValue) {
 
             var latitude = data.coord.lat;
             console.log(latitude);
+
+            uvIndex(latitude, longitude);
+
+            var historyBtn = document.createElement("button")
+            $(historyBtn).text(cityName)
+            historyEl.append(historyBtn);
+
+            
+            historyBtn.addEventListener("click", getWeather(cityName));
+
         })
 
-        function uvIndex(latitude, longitude) {
-            var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
-            fetch(uvURL)
-                .then(function (response) {
-                    return response.json()
-                }).then(function (data) {
-                    console.log(data);
-                })
-        }
 
-        uvIndex(latitude, longitude);
+todayEl.innerHTML = "";
+
+}
+
+
+
+function uvIndex(latitude, longitude) {
+    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+    fetch(uvURL)
+        .then(function (response) {
+            return response.json()
+        }).then(function (data) {
+            console.log(data);
+
+            var uviValue = data.current.uvi;
+            console.log(uviValue);
+
+            var uviEl = document.createElement("p");
+            $(uviEl).text("UV Index: " + uviValue);
+            todayEl.append(uviEl);
+        })
 }
 
 
