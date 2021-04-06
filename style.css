@@ -1,5 +1,36 @@
+.custom-container {
+    background-color: rgb(51, 114, 173);;
+}
+
+#today {
+    margin-right: 10px;
+    padding: 10px;
+}
+
+#forecast {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 2px;
+}
+
+#search-button {
+    background-color: rgb(51, 114, 173);
+    color: white;
+}
+
+#history button {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(51, 114, 173);
+    color: white;
+    margin-bottom: 10px;
+}
+
 .card {
-    background-color: blue;
+    background-color: rgb(51, 114, 173);
+    padding: 20px;
+    width: 18%;
 }
 
 .card h5 {
