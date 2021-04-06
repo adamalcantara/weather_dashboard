@@ -1,5 +1,5 @@
 //set global variables
-var apiKey = "371201dc0173d4e3e8307cc1abf9c509";
+// var apiKey = "371201dc0173d4e3e8307cc1abf9c509";
 var searchBtn = document.querySelector("#search-button");
 var todayEl = document.getElementById("today");
 var historyEl = document.getElementById("history");
@@ -9,6 +9,11 @@ var forecast = document.getElementById("forecast");
 function searchValue() {
     var searchValue = document.querySelector("#search-value").value;
     console.log(searchValue);
+
+    if (searchValue == "") {
+        alert("Must input a search term");
+        return false;
+    }
 
     var city = JSON.parse(localStorage.getItem("city")) || [];
     console.log("city:", city);
@@ -20,8 +25,11 @@ function searchValue() {
         localStorage.setItem("city", JSON.stringify(city));
         saveSearch();
     }
+
     getWeather(searchValue);
     fiveDayForecast(searchValue);
+    //set the search box to "nothing" the button has been pressed
+    document.querySelector("#search-value").value = "";
     
 }
 
