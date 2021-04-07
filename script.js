@@ -158,15 +158,24 @@ function uvIndex(latitude, longitude) {
             return response.json()
         }).then(function (data) {
             console.log(data);
-
+            
             // get the uvi variable using .notation
             var uviValue = data.current.uvi;
             console.log(uviValue);
-
+            
             //create element for uvIndex and append it to the page
             var uviEl = document.createElement("p");
-            $(uviEl).text("UV Index: " + uviValue);
+            uviEl.textContent ="UV Index: " + uviValue;
             todayEl.append(uviEl);
+
+            if (uviValue <= 2) {
+                uviEl.setAttribute("class", "favorable")
+            } else if (uviValue > 2 && uviValue < 6) {
+                uviEl.setAttribute("class", "moderate")
+            } else {
+                uviEl.setAttribute("class", "severe")
+            }
+            
         })
 }
 
