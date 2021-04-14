@@ -1,5 +1,7 @@
 # weather_dashboard
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 https://adamalcantara.github.io/weather_dashboard/
 
 Built with HTML, CSS, and JavaScript.
